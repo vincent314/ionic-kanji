@@ -4,11 +4,13 @@
 module app {
   import IPromise = angular.IPromise;
   import Kanji = mm.Kanji;
-  export class KanjiService {
-    $http:angular.IHttpService;
-    config:any;
+  import IHttpService = angular.IHttpService;
 
-    constructor($http, config) {
+  export class KanjiService {
+    $http:IHttpService;
+    config:config.Config;
+
+    constructor($http:IHttpService, config:config.Config) {
       this.$http = $http;
       this.config = config;
     }

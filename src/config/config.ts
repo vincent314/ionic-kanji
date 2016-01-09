@@ -2,10 +2,12 @@
 /// <reference path="./config.d.ts" />
 
 module config {
-  var config:Config = {
-    kanji: {
-      dataFile: 'kanjis.json'
+  export function getConfig():Config {
+    return {
+      kanji: {
+        dataFile: 'kanjis.json'
+      }
     }
-  };
+  }
 }
 

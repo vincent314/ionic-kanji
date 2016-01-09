@@ -1,7 +1,10 @@
 <ion-view view-title="Kanji list">
+  toto
   <ion-content>
-    <ion-list>
-
-    </ion-list>
+    <ul class="list">
+      <li class="item" ng-repeat="kanji in vm.kanjis">
+        {{ kanji.kanji }}
+      </li>
+    </ul>
   </ion-content>
 </ion-view>

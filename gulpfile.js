@@ -11,7 +11,7 @@ var tsconfig = require('./src/tsconfig.json');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  src: ['./src/*.ts']
+  src: ['./src/**/*.ts']
 };
 
 gulp.task('default', ['sass']);

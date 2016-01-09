@@ -5,7 +5,7 @@
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
-    "outDir": "../www/js",
+    "out": "../www/js/app.js",
     "sourceMap": true,
     "experimentalDecorators":true
   }

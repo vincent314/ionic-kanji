@@ -1,10 +1,8 @@
-/// <reference path="../typings/tsd.d.ts" />
-///<reference path="./config/config.ts" />
+/// <reference path="../../typings/tsd.d.ts" />
+///<reference path="./../config/config.ts" />
+///<reference path="types.d.ts" />
 
 import IonicPlatformService = ionic.platform.IonicPlatformService;
-interface CordovaPlugins {
-  Keyboard:Keyboard;
-}
 
 var StatusBar:StatusBar;
 
@@ -15,11 +13,16 @@ var StatusBar:StatusBar;
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('kanji', ['ionic', 'kanji.controllers', 'kanji.services'])
 
-  .constant('config', config)
+module app {
+  angular.module('app-kanji', ['ionic'])
+    .constant('config', config.getConfig())
+    .run(activate)
+    .config(configure)
+    .controller('KanjiCtrl', KanjiCtrl)
+    .service('KanjiService', KanjiService);
 
-  .run(function ($ionicPlatform:IonicPlatformService) {
+  function activate($ionicPlatform:IonicPlatformService) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -33,9 +36,9 @@ angular.module('kanji', ['ionic', 'kanji.controllers', 'kanji.services'])
         StatusBar.styleDefault();
       }
     });
-  })
+  }
 
-  .config(function ($stateProvider, $urlRouterProvider) {
+  function configure($stateProvider, $urlRouterProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -55,43 +58,16 @@ angular.module('kanji', ['ionic', 'kanji.controllers', 'kanji.services'])
       .state('tab.kanji-list', {
         url: '/kanji-list',
         views: {
-          'tab-dash': {
+          'tab-kanji-list': {
             templateUrl: 'templates/tab-kanji-list.html',
-            controller: 'KanjiListCtrl'
-          }
-        }
-      })
-
-      .state('tab.chats', {
-        url: '/chats',
-        views: {
-          'tab-chats': {
-            templateUrl: 'templates/tab-chats.html',
-            controller: 'ChatsCtrl'
-          }
-        }
-      })
-      .state('tab.chat-detail', {
-        url: '/chats/:chatId',
-        views: {
-          'tab-chats': {
-            templateUrl: 'templates/chat-detail.html',
-            controller: 'ChatDetailCtrl'
-          }
-        }
-      })
-
-      .state('tab.account', {
-        url: '/account',
-        views: {
-          'tab-account': {
-            templateUrl: 'templates/tab-account.html',
-            controller: 'AccountCtrl'
+            controller: KanjiCtrl,
+            controllerAs: 'vm'
           }
         }
       });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/dash');
+    $urlRouterProvider.otherwise('/tab/kanji-list');
 
-  });
+  }
+}
