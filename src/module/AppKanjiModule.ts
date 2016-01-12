@@ -19,7 +19,8 @@ module app {
     .constant('config', config.getConfig())
     .run(activate)
     .config(configure)
-    .controller('KanjiCtrl', KanjiCtrl)
+    .controller('KanjiListCtrl', KanjiListCtrl)
+    .controller('KanjiTestCtrl', KanjiTestCtrl)
     .service('KanjiService', KanjiService);
 
   function activate($ionicPlatform:IonicPlatformService) {
@@ -60,14 +61,34 @@ module app {
         views: {
           'tab-kanji-list': {
             templateUrl: 'templates/tab-kanji-list.html',
-            controller: KanjiCtrl,
+            controller: KanjiListCtrl,
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('tab.kanji-list.details', {
+        url: '/details',
+        views: {
+          'tab-kanji-list-details': {
+            templateUrl: 'templates/kanji-details.html',
+            controller: KanjiDetailsCtrl,
+            controllerAs: 'vm'
+          }
+        }
+      })
+      .state('tab.kanji-test', {
+        url: '/kanji-test',
+        views: {
+          'tab-kanji-test': {
+            templateUrl: 'templates/tab-kanji-test.html',
+            controller: KanjiTestCtrl,
             controllerAs: 'vm'
           }
         }
       });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/kanji-list');
+    $urlRouterProvider.otherwise('/tab/kanji-test');
 
   }
 }

@@ -1,0 +1,19 @@
+<ion-view view-title="Test">
+  <ion-content>
+    <div>
+      <h1>{{ vm.kanji.kanji }}</h1>
+      <ul>
+        <li ng-repeat="goodAnswer in vm.goodAnswers">{{ goodAnswer }}</li>
+      </ul>
+    </div>
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="Answer" ng-model="vm.answer">
+      </label>
+      <button class="button button-clear icon ion-checkmark-circled" ng-click="vm.onSubmit()">
+      </button>
+    </div>
+  </ion-content>
+
+</ion-view>
+

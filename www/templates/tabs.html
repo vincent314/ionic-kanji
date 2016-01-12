@@ -5,9 +5,18 @@ navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  <!-- Dashboard Tab -->
-  <ion-tab title="Kanji List" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/kanji-list">
+  <!-- Kanji-list Tab -->
+  <ion-tab title="List" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref=".kanji-list">
     <ion-nav-view name="tab-kanji-list"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Kanji-list Tab -->
+  <ion-tab title="Test" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref=".kanji-test">
+    <ion-nav-view name="tab-kanji-test"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="Details" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref=".kanji-list.details">
+    <ion-nav-view name="tab-kanji-list-details"></ion-nav-view>
   </ion-tab>
 
 

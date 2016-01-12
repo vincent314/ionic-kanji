@@ -1,10 +1,12 @@
 <ion-view view-title="Kanji list">
-  toto
   <ion-content>
-    <ul class="list">
-      <li class="item" ng-repeat="kanji in vm.kanjis">
-        {{ kanji.kanji }}
-      </li>
-    </ul>
+    <ion-list can-swipe="true">
+      <ion-item collection-repeat="kanji in vm.kanjis" class="item-thumbnail-left"
+      ui-sref=".details">
+        <div>{{ kanji.kanji }}</div>
+        <p>{{ kanji.meaning }}</p>
+          {{ kanji.readings.join(', ') }}
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
