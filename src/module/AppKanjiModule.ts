@@ -15,7 +15,7 @@ var StatusBar:StatusBar;
 // 'starter.controllers' is found in controllers.js
 
 module app {
-  angular.module('app-kanji', ['ionic'])
+  angular.module('app-kanji', ['ionic','ngAnimate'])
     .constant('config', config.getConfig())
     .run(activate)
     .config(configure)

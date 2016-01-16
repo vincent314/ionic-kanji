@@ -1,11 +1,34 @@
 <ion-view view-title="Test">
   <ion-content>
-    <div>
-      <h1>{{ vm.kanji.kanji }}</h1>
-      <ul>
-        <li ng-repeat="goodAnswer in vm.goodAnswers">{{ goodAnswer }}</li>
-      </ul>
+    <div><span class="bold">{{ vm.score }}/{{ vm.total }}</span> éléments trouvés</div>
+    <div class="row">
+      <div class="col">
+        <h1>{{ vm.kanji.kanji }}</h1>
+      </div>
+      <div class="col">
+        <div class="fade" ng-if="vm.goodAnswers.length > 0">Réponses correctes:</div>
+        <ul class="answer good-answer">
+          <li ng-repeat="goodAnswer in vm.goodAnswers" class="fade">{{ goodAnswer }}</li>
+        </ul>
+        <div class="fade" ng-if="vm.solutions.length > 0">Solutions :</div>
+        <ul class="answer bad-answer">
+          <li ng-repeat="solution in vm.solutions" class="fade">{{ solution }}</li>
+        </ul>
+      </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <button ng-if="vm.score !== vm.total && vm.solutions.length === 0" class="button button-assertive" ng-click="vm.onAbord()">
+          <i class="icon ion-close-round"></i> Abandonner
+        </button>
+      </div>
+      <div class="col">
+        <button ng-if="vm.score === vm.total || vm.solutions.length > 0" class="button button-positive" ng-click="vm.onNext()">
+          Suivant <i class="icon ion-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+    <div ng-if="vm.message" class="bad-answer bold fade">{{ vm.message }}</div>
     <div class="bar bar-header item-input-inset">
       <label class="item-input-wrapper">
         <input type="text" placeholder="Answer" ng-model="vm.answer">

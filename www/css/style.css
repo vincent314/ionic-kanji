@@ -1,1 +1,27 @@
 /* Empty. Add your own CSS if you like */
+
+.answer{
+  font-size: x-large;
+}
+.bad-answer{
+  color: #E90000;
+}
+
+.good-answer{
+  color: #4AA02C;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.fade.ng-enter {
+  -webkit-transition: 500ms linear all; /* Chrome */
+  -moz-transition: 500ms linear all;
+  transition: 500ms linear all;
+  opacity: 0;
+}
+
+.fade.ng-enter.ng-enter-active {
+  opacity: 1;
+}

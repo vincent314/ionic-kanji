@@ -16,7 +16,7 @@ module app {
     }
 
     public getKanjiList():IPromise<Kanji[]> {
-      return this.$http.get('../resources/' + this.config.kanji.dataFile)
+      return this.$http.get('resources/' + this.config.kanji.dataFile)
         .then((res)=> {
           return res.data;
         });
