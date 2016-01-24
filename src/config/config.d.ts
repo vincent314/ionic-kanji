@@ -1,6 +1,6 @@
 declare module config {
   interface Kanji {
-    dataFile:string;
+    dataUrl:string;
   }
 
   interface Config {

@@ -15,10 +15,10 @@
       "commit": "ba257a9b91bc0de1bdd9091b6723194c905a902a"
     },
     "angularjs/angular.d.ts": {
-      "commit": "ba257a9b91bc0de1bdd9091b6723194c905a902a"
+      "commit": "7fffbd3e040a93c244777e3be04cd6223ac69301"
     },
     "jquery/jquery.d.ts": {
-      "commit": "ba257a9b91bc0de1bdd9091b6723194c905a902a"
+      "commit": "7fffbd3e040a93c244777e3be04cd6223ac69301"
     },
     "cordova/plugins/Contacts.d.ts": {
       "commit": "ba257a9b91bc0de1bdd9091b6723194c905a902a"
@@ -79,6 +79,21 @@
     },
     "lodash/lodash.d.ts": {
       "commit": "70bf7e2bfeb0d5b1b651ef3219bcc65c8eec117e"
+    },
+    "jasmine/jasmine.d.ts": {
+      "commit": "70bf7e2bfeb0d5b1b651ef3219bcc65c8eec117e"
+    },
+    "angularjs/angular-mocks.d.ts": {
+      "commit": "70bf7e2bfeb0d5b1b651ef3219bcc65c8eec117e"
+    },
+    "angular-ui-router/angular-ui-router.d.ts": {
+      "commit": "7fffbd3e040a93c244777e3be04cd6223ac69301"
+    },
+    "angular-local-storage/angular-local-storage.d.ts": {
+      "commit": "7fffbd3e040a93c244777e3be04cd6223ac69301"
+    },
+    "angular-translate/angular-translate.d.ts": {
+      "commit": "7fffbd3e040a93c244777e3be04cd6223ac69301"
     }
   }
 }

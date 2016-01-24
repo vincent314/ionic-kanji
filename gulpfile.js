@@ -8,10 +8,14 @@ var rename = require('gulp-rename');
 var sh = require('shelljs');
 var typescript = require('gulp-tsc');
 var tsconfig = require('./src/tsconfig.json');
+var tsconfigSpec = require('./spec/tsconfig.json');
+var Server = require('karma').Server;
+var sequence = require('gulp-sequence');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  src: ['./src/**/*.ts']
+  src: ['./src/**/*.ts'],
+  spec: ['./spec/**/*.ts']
 };
 
 gulp.task('default', ['sass']);
@@ -62,3 +66,25 @@ gulp.task('compile', function () {
     .pipe(gulp.dest('www/js/'))
 
 });
+
+gulp.task('compile-spec', function () {
+  var options = tsconfigSpec.compilerOptions;
+  options.emitError = false;
+
+  gulp.src(paths.spec)
+    .pipe(typescript(options))
+    .pipe(gulp.dest('./output'))
+
+});
+
+gulp.task('karma', function (done) {
+  new Server({
+    configFile: __dirname + '/spec/karma.conf.js',
+    singleRun: true
+  }, function (err) {
+    console.log(err);
+    done();
+  }).start();
+});
+
+gulp.task('test', sequence('compile','compile-spec','karma'));

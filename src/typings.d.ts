@@ -1,0 +1,10 @@
+///<reference path="../typings/tsd.d.ts" />
+///<reference path="config/config.d.ts" />
+///<reference path="config/config.ts" />
+///<reference path="controller/KanjiDetailsCtrl.ts" />
+///<reference path="controller/KanjiListCtrl.ts" />
+///<reference path="controller/KanjiTestCtrl.ts" />
+///<reference path="mm/mm.d.ts" />
+///<reference path="module/AppKanjiModule.ts" />
+///<reference path="module/types.d.ts" />
+///<reference path="service/KanjiService.ts" />

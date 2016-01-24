@@ -8,6 +8,7 @@ module app {
     public kanjis:Kanji[];
 
     constructor(KanjiService:KanjiService) {
+      this.kanjis = [];
       KanjiService.getKanjiList().then((kanjis:Kanji[])=> {
         this.kanjis = kanjis;
       });

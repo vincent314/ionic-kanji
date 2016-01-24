@@ -1,11 +1,11 @@
-<ion-view view-title="Kanji list">
+<ion-view view-title="{{ 'KANJI_LIST'|translate }}">
   <ion-content>
     <ion-list can-swipe="true">
       <ion-item collection-repeat="kanji in vm.kanjis" class="item-thumbnail-left"
-      ui-sref=".details">
-        <div>{{ kanji.kanji }}</div>
+                ui-sref="tab.details({kanji:kanji})">
+        <h1 class="item-image">{{ kanji.kanji }}</h1>
         <p>{{ kanji.meaning }}</p>
-          {{ kanji.readings.join(', ') }}
+        <h2>{{ kanji.readings.join(', ') }}</h2>
       </ion-item>
     </ion-list>
   </ion-content>

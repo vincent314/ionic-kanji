@@ -1,8 +1,9 @@
 /// <reference path="../../typings/tsd.d.ts" />
 ///<reference path="./../config/config.ts" />
 ///<reference path="types.d.ts" />
-
-import IonicPlatformService = ionic.platform.IonicPlatformService;
+///<reference path="../controller/KanjiListCtrl.ts" />
+///<reference path="../controller/KanjiTestCtrl.ts" />
+///<reference path="../service/KanjiService.ts" />
 
 var StatusBar:StatusBar;
 
@@ -15,7 +16,12 @@ var StatusBar:StatusBar;
 // 'starter.controllers' is found in controllers.js
 
 module app {
-  angular.module('app-kanji', ['ionic','ngAnimate'])
+  import IonicPlatformService = ionic.platform.IonicPlatformService;
+  import ITranslateProvider = angular.translate.ITranslateProvider;
+  import IStateProvider = angular.ui.IStateProvider;
+  import IUrlRouterProvider = angular.ui.IUrlRouterProvider;
+
+  angular.module('app-kanji', ['ionic', 'ngAnimate', 'LocalStorageModule','pascalprecht.translate'])
     .constant('config', config.getConfig())
     .run(activate)
     .config(configure)
@@ -39,7 +45,7 @@ module app {
     });
   }
 
-  function configure($stateProvider, $urlRouterProvider) {
+  function configure($stateProvider:IStateProvider, $urlRouterProvider:IUrlRouterProvider, $translateProvider:ITranslateProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -66,10 +72,11 @@ module app {
           }
         }
       })
-      .state('tab.kanji-list.details', {
+      .state('tab.details', {
         url: '/details',
+        params: {kanji: null},
         views: {
-          'tab-kanji-list-details': {
+          'tab-kanji-list': {
             templateUrl: 'templates/kanji-details.html',
             controller: KanjiDetailsCtrl,
             controllerAs: 'vm'
@@ -88,7 +95,9 @@ module app {
       });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/kanji-test');
+    $urlRouterProvider.otherwise('/tab/kanji-list');
 
+    // Configure label translations
+    config.getTranslate($translateProvider);
   }
 }

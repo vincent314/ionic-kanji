@@ -46,7 +46,7 @@ module app {
       this.total = this.kanji.readings.length
     }
 
-    private findByRomaji(readings:Array<string>, value:string):string{
+    public findByRomaji(readings:Array<string>, value:string):string{
       return _.find(readings,
         (item:string)=>{
           return wanakana.toRomaji(item) === wanakana.toRomaji(value.replace(/\(.+\)/, ''))

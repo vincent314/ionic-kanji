@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target":"ES5",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "out": "../output/spec.js",
+    "sourceMap": true,
+    "experimentalDecorators":true
+  }
+}

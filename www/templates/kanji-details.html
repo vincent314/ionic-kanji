@@ -1,5 +1,16 @@
-<ion-view view-title="Details">
+<ion-view view-title="{{ 'KANJI_DETAILS' | translate }}">
   <ion-content>
-    <h1>Details</h1>
+
+    <div class="card">
+      <h1>{{ vm.kanji.kanji }}</h1>
+      <div>
+        <em>{{ vm.kanji.comment }}</em>
+      </div>
+
+      <div class="item item-text-wrap" ng-repeat="vocabulary in vm.kanji.vocabulary">
+        <h3>{{ vocabulary.japanese }} [{{ vocabulary.reading }}]</h3>
+        <p>{{ vocabulary.meaning }}</p>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
