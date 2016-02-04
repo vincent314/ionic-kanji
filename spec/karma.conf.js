@@ -18,7 +18,6 @@ module.exports = function (config) {
       '../www/lib/angular-animate/angular-animate.js',
       '../www/lib/lodash/dist/lodash.js',
       '../www/lib/wanakana/lib/wanakana.js',
-      '../www/js/app.js',
       '../output/spec.js'
     ],
 

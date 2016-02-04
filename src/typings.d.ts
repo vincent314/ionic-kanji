@@ -1,6 +1,7 @@
 ///<reference path="../typings/tsd.d.ts" />
 ///<reference path="config/config.d.ts" />
 ///<reference path="config/config.ts" />
+///<reference path="config/translate.ts" />
 ///<reference path="controller/KanjiDetailsCtrl.ts" />
 ///<reference path="controller/KanjiListCtrl.ts" />
 ///<reference path="controller/KanjiTestCtrl.ts" />

@@ -9,6 +9,10 @@ module app {
   import IQService = angular.IQService;
   import IHttpResponseTransformer = angular.IHttpResponseTransformer;
 
+  export interface IKanjiService{
+    getKanjiList:()=>IPromise<Kanji[]>;
+  }
+
   export class KanjiService {
     $http:IHttpService;
     config:config.Config;

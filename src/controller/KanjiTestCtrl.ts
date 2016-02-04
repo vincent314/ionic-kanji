@@ -2,7 +2,22 @@
 ///<reference path="../mm/mm.d.ts" />
 module app {
   import Kanji = mm.Kanji;
-  export class KanjiTestCtrl {
+
+  export interface IKanjiTestCtrl{
+    kanjis:Array<Kanji>;
+    kanji:Kanji;
+    answer:string;
+    goodAnswers:Array<string>;
+    solutions:Array<string>;
+    message:string;
+    total:number;
+    score:number;
+    onSubmit:()=>void;
+    onNext:()=>void;
+    onAbord:()=>void;
+  }
+
+  export class KanjiTestCtrl implements IKanjiTestCtrl{
     kanjis:Array<Kanji>;
     kanji:Kanji;
     answer:string;
@@ -12,14 +27,14 @@ module app {
     total:number;
     score:number;
 
-    constructor(KanjiService:KanjiService) {
+    constructor(KanjiService:IKanjiService) {
       KanjiService.getKanjiList().then((data:Kanji[])=> {
         this.kanjis = data;
         this.init();
       });
     }
 
-    public init() {
+    private init() {
       this.kanji = _.sample(this.kanjis);
       this.total = this.kanji.readings.length;
       this.goodAnswers = [];
@@ -49,7 +64,8 @@ module app {
     public findByRomaji(readings:Array<string>, value:string):string{
       return _.find(readings,
         (item:string)=>{
-          return wanakana.toRomaji(item) === wanakana.toRomaji(value.replace(/\(.+\)/, ''))
+          var regexp:RegExp = /[（\(].+[）\)]/;
+          return wanakana.toRomaji(item.replace(regexp, '')) === wanakana.toRomaji(value.replace(regexp, ''))
         });
     }
 
