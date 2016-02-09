@@ -8,3 +8,7 @@ declare module wanakana{
   function isRomaji(input:string):boolean;
   function toRomaji(input:string):string;
 }
+
+interface IIonicToast{
+  show(message:string,position:string,stick:boolean,time:number);
+}

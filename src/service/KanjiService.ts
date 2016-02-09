@@ -8,6 +8,7 @@ module app {
   import ILocalStorageService = angular.local.storage.ILocalStorageService;
   import IQService = angular.IQService;
   import IHttpResponseTransformer = angular.IHttpResponseTransformer;
+  import IonicLoadingService = ionic.loading.IonicLoadingService;
 
   export interface IKanjiService{
     getKanjiList:()=>IPromise<Kanji[]>;
@@ -18,12 +19,19 @@ module app {
     config:config.Config;
     localStorageService:ILocalStorageService;
     $q:IQService;
+    $ionicLoading:IonicLoadingService;
 
-    constructor($http:IHttpService, config:config.Config, localStorageService:ILocalStorageService, $q:IQService) {
+    constructor($http:IHttpService,
+                config:config.Config,
+                localStorageService:ILocalStorageService,
+                $q:IQService,
+                $ionicLoading:IonicLoadingService
+    ) {
       this.$http = $http;
       this.config = config;
       this.localStorageService = localStorageService;
       this.$q = $q;
+      this.$ionicLoading = $ionicLoading;
     }
 
     public getKanjiList():IPromise<Kanji[]> {
@@ -36,15 +44,28 @@ module app {
 
       var dataUrl:string = this.config.kanji.dataUrl;
 
+      // Open loading popin
+      this.$ionicLoading.show();
+
       return this.$http.get<Kanji[]>(dataUrl)
         .then((res)=> {
+          // Close Loading popin
+          this.$ionicLoading.hide();
+
           var kanjis:Kanji[] = res.data;
           console.log("%d kanjis read from %s", kanjis.length, dataUrl);
           this.localStorageService.set('kanji-list', kanjis);
           return kanjis;
+        })
+        .catch((err:Error)=>{
+          console.log(err);
+          this.$ionicLoading.hide();
+          return [];
         });
+    }
 
-
+    public invalidCache():void{
+      this.localStorageService.remove('kanji-list');
     }
   }
 }

@@ -3,6 +3,7 @@
 ///<reference path="types.d.ts" />
 ///<reference path="../controller/KanjiListCtrl.ts" />
 ///<reference path="../controller/KanjiTestCtrl.ts" />
+///<reference path="../controller/SettingsCtrl.ts" />
 ///<reference path="../service/KanjiService.ts" />
 
 var StatusBar:StatusBar;
@@ -21,13 +22,16 @@ module app {
   import IStateProvider = angular.ui.IStateProvider;
   import IUrlRouterProvider = angular.ui.IUrlRouterProvider;
 
-  angular.module('app-kanji', ['ionic', 'ngAnimate', 'LocalStorageModule','pascalprecht.translate'])
+  angular.module('app-kanji', ['ionic', 'ngAnimate', 'LocalStorageModule','pascalprecht.translate','ionic-toast'])
     .constant('config', config.getConfig())
     .run(activate)
     .config(configure)
     .controller('KanjiListCtrl', KanjiListCtrl)
     .controller('KanjiTestCtrl', KanjiTestCtrl)
-    .service('KanjiService', KanjiService);
+    .service('KanjiService', KanjiService)
+    .constant('$ionicLoadingConfig',{
+      template:'Loading … <ion-spinner></ion-spinner>'
+    });
 
   function activate($ionicPlatform:IonicPlatformService) {
     $ionicPlatform.ready(function () {
@@ -92,12 +96,23 @@ module app {
             controllerAs: 'vm'
           }
         }
+      })
+      .state('tab.settings', {
+        url: '/settings',
+        views: {
+          'tab-settings': {
+            templateUrl: 'templates/tab-settings.html',
+            controller: SettingsCtrl,
+            controllerAs: 'vm'
+          }
+        }
       });
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/kanji-list');
 
     // Configure label translations
+    $translateProvider.useSanitizeValueStrategy('escape');
     config.getTranslate($translateProvider);
   }
 }

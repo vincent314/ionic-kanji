@@ -5,7 +5,7 @@ module config {
   export function getConfig():Config {
     return {
       kanji: {
-        dataUrl: 'http://japonais.ovh/docs/kanji-lessons/data/kanjis.json'
+        dataUrl: 'https://vincent314.github.io/nihongo3.14/docs/kanji-lessons/data/kanjis.json'
       }
     }
   }

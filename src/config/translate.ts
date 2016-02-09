@@ -10,7 +10,10 @@ module config{
       'GOOD_ANSWERS':'Bonnes réponses',
       'SOLUTIONS':'Solutions',
       'SKIP':'Abandonner',
-      'ANSWER':'Réponse'
+      'ANSWER':'Réponse',
+      'SETTINGS': 'Paramètres',
+      'INVALIDATE_CACHE':'Supprimer les données en cache',
+      'CACHE_INVALIDATED':'Le cache a été supprimé'
     });
     $translateProvider.translations('en',{
       'KANJI_LIST':'Kanji lists',
@@ -20,7 +23,10 @@ module config{
       'GOOD_ANSWERS':'Good answers',
       'SOLUTIONS':'Solutions',
       'SKIP':'Skip',
-      'ANSWER':'Answer'
+      'ANSWER':'Answer',
+      'SETTINGS':'Settings',
+      'INVALIDATE_CACHE':'Invalidate cache',
+      'CACHE_INVALIDATED':'The cache has been invalidated'
     });
     $translateProvider.preferredLanguage('fr');
   }
