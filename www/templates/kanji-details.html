@@ -2,14 +2,32 @@
   <ion-content>
 
     <div class="card">
-      <h1>{{ vm.kanji.kanji }}</h1>
-      <div>
-        <em>{{ vm.kanji.comment }}</em>
-      </div>
+      <div class="item item-divider item-text-wrap">
+        <div class="row">
+          <div class="col">
+            <h1>{{ vm.kanji.kanji }}</h1>
+            <h3>{{ vm.kanji.readings.join(', ') }}</h3>
+          </div>
+          <div class="col">
+            <p>
+              <em>{{ vm.kanji.comment }}</em>
+            </p>
+            <p>{{ vm.kanji.meaning }}</p>
+          </div>
+        </div>
 
+
+      </div>
       <div class="item item-text-wrap" ng-repeat="vocabulary in vm.kanji.vocabulary">
-        <h3>{{ vocabulary.japanese }} [{{ vocabulary.reading }}]</h3>
-        <p>{{ vocabulary.meaning }}</p>
+        <div class="row">
+          <div class="col">
+            <span class="text-large" ng-bind-html="vm.renderWithFurigana(vocabulary.japanese, vocabulary.reading)"></span>
+          </div>
+          <div class="col">
+            <p>{{ vocabulary.meaning }}</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </ion-content>

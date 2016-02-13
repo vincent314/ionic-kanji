@@ -10,6 +10,7 @@
     "lodash": "~4.0.0",
     "angular-translate": "~2.8.1",
     "ionic-toast": "~0.2.0",
-    "jsdiff": "^2.2.1"
+    "jsdiff": "^2.2.1",
+    "utf8": "^2.1.1"
   }
 }

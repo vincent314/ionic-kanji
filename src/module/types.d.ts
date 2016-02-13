@@ -12,3 +12,8 @@ declare module wanakana{
 interface IIonicToast{
   show(message:string,position:string,stick:boolean,time:number);
 }
+
+declare module utf8{
+  function encode(input:string):string;
+  function decode(input:string):string;
+}

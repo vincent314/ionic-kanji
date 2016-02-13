@@ -5,7 +5,7 @@ import KanjiService = app.KanjiService;
 import IHttpService = angular.IHttpService;
 import ILocalStorageService = angular.local.storage.ILocalStorageService;
 import IonicLoadingService = ionic.loading.IonicLoadingService;
-fdescribe('Test de KanjiService -', ()=> {
+describe('Test de KanjiService -', ()=> {
   var service:KanjiService;
 
   beforeEach(angular.mock.module('ionic'));
@@ -17,10 +17,12 @@ fdescribe('Test de KanjiService -', ()=> {
   });
 
   it('Fonction diff kanji-kana mix', ()=> {
-    expect(service.diff('しょうしょくはながいきのしるし', '小食は長生きのしるし')).toBe('');
+    expect(service.diff('しょうしょくはながいきのしるし', '小食は長生きのしるし'))
+      .toBe('<ruby>小食<rt>しょうしょく</rt></ruby>は<ruby>長生<rt>ながい</rt></ruby>きのしるし');
   });
 
   it('Fonction diff kana', ()=> {
-    expect(service.diff('ことり', '小鳥')).toBe('');
+    expect(service.diff('ことり', '小鳥')).
+    toBe('<ruby>小鳥<rt>ことり</rt></ruby>');
   });
 });

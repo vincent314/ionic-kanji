@@ -74,8 +74,8 @@ module app {
     }
 
 
-    public diff(hiragana:string, withKanji:string):string {
-      var diffResult:IDiffResult[] = JsDiff.diffChars(withKanji, hiragana);
+    public diff(reading:string, withKanji:string):string {
+      var diffResult:IDiffResult[] = JsDiff.diffChars(withKanji, reading);
       var kanjiKanaList:Array<KanjiKana|string> = [];
 
       var current:KanjiKana = new KanjiKana();
@@ -88,9 +88,9 @@ module app {
         }
 
         if (part.removed) {
-          current.kana = part.value;
-        } else if (part.added) {
           current.kanji = part.value;
+        } else if (part.added) {
+          current.kana = part.value;
         }
 
         if (current.kana && current.kanji) {
