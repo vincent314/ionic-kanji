@@ -9,6 +9,7 @@
     "wanakana": "~1.3.7",
     "lodash": "~4.0.0",
     "angular-translate": "~2.8.1",
-    "ionic-toast": "~0.2.0"
+    "ionic-toast": "~0.2.0",
+    "jsdiff": "^2.2.1"
   }
 }

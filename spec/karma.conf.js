@@ -13,11 +13,12 @@ module.exports = function (config) {
       '../www/lib/angular-mocks/angular-mocks.js',
       '../www/lib/angular-sanitize/angular-sanitize.js',
       '../www/lib/angular-ui-router/release/angular-ui-router.js',
-      '../www/lib/ionic/js/ionic.js',
-      '../www/lib/ionic/js/ionic-angular.js',
+      '../www/lib/ionic/js/ionic.bundle.js',
       '../www/lib/angular-animate/angular-animate.js',
       '../www/lib/lodash/dist/lodash.js',
       '../www/lib/wanakana/lib/wanakana.js',
+      '../www/lib/angular-local-storage/dist/angular-local-storage.js',
+      '../www/lib/jsdiff/diff.js',
       '../output/spec.js'
     ],
 

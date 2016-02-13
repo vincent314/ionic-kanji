@@ -9,9 +9,15 @@ module app {
   import IQService = angular.IQService;
   import IHttpResponseTransformer = angular.IHttpResponseTransformer;
   import IonicLoadingService = ionic.loading.IonicLoadingService;
+  import IDiffResult = JsDiff.IDiffResult;
 
-  export interface IKanjiService{
+  export interface IKanjiService {
     getKanjiList:()=>IPromise<Kanji[]>;
+  }
+
+  class KanjiKana {
+    kanji:string;
+    kana:string;
   }
 
   export class KanjiService {
@@ -25,8 +31,7 @@ module app {
                 config:config.Config,
                 localStorageService:ILocalStorageService,
                 $q:IQService,
-                $ionicLoading:IonicLoadingService
-    ) {
+                $ionicLoading:IonicLoadingService) {
       this.$http = $http;
       this.config = config;
       this.localStorageService = localStorageService;
@@ -57,15 +62,51 @@ module app {
           this.localStorageService.set('kanji-list', kanjis);
           return kanjis;
         })
-        .catch((err:Error)=>{
+        .catch((err:Error)=> {
           console.log(err);
           this.$ionicLoading.hide();
           return [];
         });
     }
 
-    public invalidCache():void{
+    public invalidCache():void {
       this.localStorageService.remove('kanji-list');
+    }
+
+
+    public diff(hiragana:string, withKanji:string):string {
+      var diffResult:IDiffResult[] = JsDiff.diffChars(withKanji, hiragana);
+      var kanjiKanaList:Array<KanjiKana|string> = [];
+
+      var current:KanjiKana = new KanjiKana();
+
+      _.each(diffResult, (part:IDiffResult)=> {
+        if (!part.removed && !part.added) {
+          current = new KanjiKana();
+          kanjiKanaList.push(part.value);
+          return;
+        }
+
+        if (part.removed) {
+          current.kana = part.value;
+        } else if (part.added) {
+          current.kanji = part.value;
+        }
+
+        if (current.kana && current.kanji) {
+          kanjiKanaList.push(current);
+          current = new KanjiKana();
+        }
+      });
+
+      return _.reduce<(KanjiKana|string),string>(kanjiKanaList, (memo:string, item:(KanjiKana|string))=> {
+        if (item instanceof KanjiKana) {
+          var furigana = `<ruby>${item.kanji}<rt>${item.kana}</rt></ruby>`;
+          return memo + furigana;
+        } else {
+          return memo + item;
+        }
+      }, '');
     }
   }
 }

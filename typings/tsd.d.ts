@@ -28,3 +28,4 @@
 /// <reference path="angular-ui-router/angular-ui-router.d.ts" />
 /// <reference path="angular-local-storage/angular-local-storage.d.ts" />
 /// <reference path="angular-translate/angular-translate.d.ts" />
+/// <reference path="diff/diff.d.ts" />
